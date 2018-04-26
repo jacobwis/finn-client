@@ -1,6 +1,7 @@
-import * as React from 'react';
 import { Request, Response } from 'express';
+import * as React from 'react';
 import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 import App from './App';
 
 const ENV = process.env.NODE_ENV || 'development';
@@ -8,7 +9,13 @@ const IS_PROD = ENV === 'production';
 
 export default function serverRenderer() {
   return (req: Request, res: Response) => {
-    const html = renderToString(<App />);
+    const context = {};
+
+    const html = renderToString(
+      <StaticRouter context={context} location={req.url}>
+        <App />
+      </StaticRouter>
+    );
 
     res.send(`
     <!DOCTYPE html>
