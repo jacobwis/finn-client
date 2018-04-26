@@ -1,6 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
 
+const ENV = process.env.NODE_ENV || "development";
+const IS_PROD = ENV === "production";
+
 module.exports = {
   entry: path.resolve(__dirname, "../src", "ssr.tsx"),
   mode: "development",
@@ -19,7 +22,12 @@ module.exports = {
     path: path.resolve(__dirname, "../build"),
     publicPath: "/"
   },
-  plugins: [new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })],
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify(ENV)
+    })
+  ],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },

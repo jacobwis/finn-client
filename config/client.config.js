@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const CSSExtractPlugin = require("mini-css-extract-plugin");
 
 const ENV = process.env.NODE_ENV || "development";
 const IS_PROD = ENV === "production";
@@ -22,6 +23,15 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: "awesome-typescript-loader"
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          IS_PROD ? CSSExtractPlugin.loader : "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          "postcss-loader",
+          "sass-loader"
+        ]
       }
     ]
   },
@@ -31,10 +41,18 @@ module.exports = {
     path: path.resolve(__dirname, "..", "build")
   },
   plugins: (() => {
-    const plugins = [];
+    const plugins = [
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify(ENV)
+      })
+    ];
 
     if (IS_PROD) {
-      //
+      plugins.push(
+        new CSSExtractPlugin({
+          filename: "styles.css"
+        })
+      );
     }
 
     if (!IS_PROD) {
