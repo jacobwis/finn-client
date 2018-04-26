@@ -1,6 +1,7 @@
 import { hot } from 'react-hot-loader';
 import * as React from 'react';
 import { Route, Link } from 'react-router-dom';
+import View from './components/View';
 
 const App = () => (
   <div>
@@ -8,19 +9,19 @@ const App = () => (
       path="/"
       exact
       render={() => (
-        <div>
-          <h1>Home</h1>
+        <View title="Home">
+          <h1>Home View</h1>
           <Link to="/about">About</Link>
-        </div>
+        </View>
       )}
     />
     <Route
       path="/about"
       render={() => (
-        <div>
+        <View title="About">
           <h1>About</h1>
           <Link to="/">Home</Link>
-        </div>
+        </View>
       )}
     />
   </div>

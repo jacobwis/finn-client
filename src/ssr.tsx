@@ -3,6 +3,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import App from './App';
+import View from './components/View';
 
 const ENV = process.env.NODE_ENV || 'development';
 const IS_PROD = ENV === 'production';
@@ -24,7 +25,7 @@ export default function serverRenderer() {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
+      <title>${View.getTitle()}</title>
       ${IS_PROD ? `<link rel="stylesheet" href="/styles.css">` : ''}
     </head>
     <body>
