@@ -11,7 +11,7 @@ describe('<Button />', () => {
   it('should pass "props.className" to the element', () => {
     const btn = shallow(<Button className="CustomClass" />);
 
-    expect(btn.hasClass('CustomClass')).toEqual(true);
+    expect(btn).toHaveClassName('CustomClass');
   });
 
   it('should call "props.onClick" when the element is clicked', () => {
@@ -42,6 +42,7 @@ describe('<Button />', () => {
     const btn = shallow(<Button theme="primary" />);
 
     expect(btn.hasClass('Button--primary')).toEqual(true);
+    expect(btn).toHaveClassName('Button--primary');
   });
 
   it('"props.type" should be "solid" by default', () => {
@@ -52,22 +53,25 @@ describe('<Button />', () => {
 
   it('should have the class "Button--solid" if "props.type" equals "solid"', () => {
     const btn = shallow(<Button type="solid" />);
-    expect(btn.hasClass('Button--solid')).toEqual(true);
+
+    expect(btn).toHaveClassName('Button--solid');
   });
 
   it('should have the class "Button--outline" if "props.type" equals "outline"', () => {
     const btn = shallow(<Button type="outline" />);
-    expect(btn.hasClass('Button--outline')).toEqual(true);
+
+    expect(btn).toHaveClassName('Button--outline');
   });
 
   it('should have the class "Button--text" if "props.type" equals "text"', () => {
     const btn = shallow(<Button type="text" />);
-    expect(btn.hasClass('Button--text')).toEqual(true);
+
+    expect(btn).toHaveClassName('Button--text');
   });
 
   it('should have the class "Button" by default', () => {
     const btn = shallow(<Button />);
 
-    expect(btn.hasClass('Button')).toEqual(true);
+    expect(btn).toHaveClassName('Button');
   });
 });

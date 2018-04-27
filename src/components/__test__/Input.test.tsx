@@ -6,13 +6,13 @@ describe('<Input />', () => {
   it('should have the class "Input"', () => {
     const input = shallow(<Input />);
 
-    expect(input.find('input').hasClass('Input')).toEqual(true);
+    expect(input.find('input')).toHaveClassName('Input');
   });
 
   it('should pass "props.className" to the input element', () => {
     const input = shallow(<Input className="CustomClass" />);
 
-    expect(input.find('input').hasClass('CustomClass')).toEqual(true);
+    expect(input.find('input')).toHaveClassName('CustomClass');
   });
 
   it('should pass "props.name" to the input element', () => {
