@@ -1,44 +1,34 @@
 import * as React from 'react';
+import Icon from './Icon';
 
 interface Props {
-  icon: string;
-  prefix?: 'solid' | 'regular' | 'light' | 'brands';
+  children: React.ReactElement<Icon>;
   theme?: 'primary' | 'secondary';
   type?: 'solid' | 'outline' | 'text';
 }
 
-const IconButton: React.StatelessComponent<Props> = props => {
-  const { icon, prefix, theme, type } = props;
+class IconButton extends React.Component<Props> {
+  public static defaultProps: Partial<Props> = {
+    theme: 'primary',
+    type: 'solid'
+  };
 
-  let iconClass = 'fa-fw ';
+  public static Icon = Icon;
 
-  if (prefix === 'solid') iconClass += 'fas';
-  if (prefix === 'regular') iconClass += 'far';
-  if (prefix === 'light') iconClass += 'fal';
-  if (prefix === 'brands') iconClass += 'fab';
+  public render() {
+    const { children, theme, type } = this.props;
 
-  if (icon) iconClass += ` fa-${icon}`;
+    let buttonClass = 'IconButton';
 
-  let buttonClass = 'IconButton';
+    if (theme === 'primary') buttonClass += ' IconButton--primary';
+    if (theme === 'secondary') buttonClass += ' IconButton--secondary';
 
-  if (theme === 'primary') buttonClass += ' IconButton--primary';
-  if (theme === 'secondary') buttonClass += ' IconButton--secondary';
+    if (type === 'solid') buttonClass += ' IconButton--solid';
+    if (type === 'outline') buttonClass += ' IconButton--outline';
+    if (type === 'text') buttonClass += ' IconButton--text';
 
-  if (type === 'solid') buttonClass += ' IconButton--solid';
-  if (type === 'outline') buttonClass += ' IconButton--outline';
-  if (type === 'text') buttonClass += ' IconButton--text';
-
-  return (
-    <button className={buttonClass}>
-      <i className={iconClass} />
-    </button>
-  );
-};
-
-IconButton.defaultProps = {
-  prefix: 'regular',
-  theme: 'primary',
-  type: 'solid'
-};
+    return <button className={buttonClass}>{children}</button>;
+  }
+}
 
 export default IconButton;

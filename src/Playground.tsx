@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from './components/Button';
 import IconButton from './components/IconButton';
 import Input from './components/Input';
+import Icon from './components/Icon';
 
 class Playground extends React.Component {
   public render() {
@@ -34,8 +35,9 @@ class Playground extends React.Component {
               <i className="far fa-fw fa-search" />
             </span>
           </div> */}
-          <Input />
-          <Input />
+          <IconButton>
+            <Icon icon="bars" />
+          </IconButton>
         </div>
       </div>
     );
