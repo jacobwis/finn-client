@@ -2,6 +2,7 @@ import { hot } from 'react-hot-loader';
 import * as React from 'react';
 import { Route, Link } from 'react-router-dom';
 import View from './components/View';
+import Playground from './Playground';
 
 const App = () => (
   <div>
@@ -15,15 +16,7 @@ const App = () => (
         </View>
       )}
     />
-    <Route
-      path="/about"
-      render={() => (
-        <View title="About">
-          <h1>About</h1>
-          <Link to="/">Home</Link>
-        </View>
-      )}
-    />
+    <Route path="/playground" component={Playground} />
   </div>
 );
 
