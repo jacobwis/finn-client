@@ -4,13 +4,18 @@
   font-size: 16px;
   height: 46px;
   padding: 0 16px;
+  width: 100%;
 }
 
-.Input--with-icon {
+.Input--with-icon-left {
   padding-left: 52px;
 }
 
-.Input__icon {
+.Input--with-icon-right {
+  padding-right: 52px;
+}
+
+.Input__icon-left {
   align-items: center;
   color: hsl(0, 0, 50);
   display: flex;
@@ -19,4 +24,22 @@
   position: absolute;
   top: 0;
   padding: 0 16px;
+}
+
+.Input__icon-right {
+  align-items: center;
+  color: hsl(0, 0, 50);
+  display: flex;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  top: 0;
+  padding: 0 16px;
+}
+
+.Input__wrapper {
+  display: inline-block;
+  position: relative;
+  min-width: 250px;
+  margin-right: 8px;
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { shallow, mount } from 'enzyme';
+import Icon from '../Icon';
 import Input from '../Input';
 
 describe('<Input />', () => {
@@ -9,10 +10,52 @@ describe('<Input />', () => {
     expect(input.find('input')).toHaveClassName('Input');
   });
 
+  it('the wrapper element should have the class "Input__wrapper"', () => {
+    const input = shallow(<Input />);
+
+    expect(input).toHaveClassName('Input__wrapper');
+  });
+
   it('should pass "props.className" to the input element', () => {
     const input = shallow(<Input className="CustomClass" />);
 
     expect(input.find('input')).toHaveClassName('CustomClass');
+  });
+
+  it('should render "props.iconLeft"', () => {
+    const input = shallow(<Input iconLeft={() => <Icon icon="search" />} />);
+
+    expect(input).toContainReact(<Icon icon="search" />);
+  });
+
+  it('the input element should have the class "Input--with-icon-left" if "props.iconLeft" is defined', () => {
+    const input = shallow(<Input iconLeft={() => <Icon icon="search" />} />);
+
+    expect(input.find('input')).toHaveClassName('Input--with-icon-left');
+  });
+
+  it('should render a span element with the class "Input__icon-left" if "props.iconLeft" is defined', () => {
+    const input = shallow(<Input iconLeft={() => <Icon icon="search" />} />);
+
+    expect(input.children().find('span')).toHaveClassName('Input__icon-left');
+  });
+
+  it('should render "props.iconRight"', () => {
+    const input = shallow(<Input iconRight={() => <Icon icon="search" />} />);
+
+    expect(input).toContainReact(<Icon icon="search" />);
+  });
+
+  it('the input element should have the class "Input--with-icon-right" if "props.iconRight" is defined', () => {
+    const input = shallow(<Input iconRight={() => <Icon icon="search" />} />);
+
+    expect(input.find('input')).toHaveClassName('Input--with-icon-right');
+  });
+
+  it('should render a span element with the class "Input__icon-right" if "props.iconRight" is defined', () => {
+    const input = shallow(<Input iconRight={() => <Icon icon="search" />} />);
+
+    expect(input.children().find('span')).toHaveClassName('Input__icon-right');
   });
 
   it('should pass "props.name" to the input element', () => {

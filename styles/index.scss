@@ -11,21 +11,8 @@
 @import 'components/iconButton';
 @import 'components/input';
 
-.display-none {
-  display: none;
-}
-
-.display-md-none {
-  @include min-width('md') {
-    display: none;
-  }
-}
-
-.display-md-flex {
-  @include min-width('md') {
-    display: flex;
-  }
-}
+// Utilities
+@import 'utilities/display';
 
 .container {
   margin: 0 auto;

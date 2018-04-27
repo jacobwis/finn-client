@@ -41,7 +41,6 @@ describe('<Button />', () => {
   it('should have the class "Button--primary" if "props.theme" equals "primary"', () => {
     const btn = shallow(<Button theme="primary" />);
 
-    expect(btn.hasClass('Button--primary')).toEqual(true);
     expect(btn).toHaveClassName('Button--primary');
   });
 

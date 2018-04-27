@@ -1,0 +1,31 @@
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-inline-flex {
+  display: inline-flex;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+$display-values: 'none', 'block', 'inline-block', 'flex', 'inline-flex';
+
+@each $key, $value in $breakpoints {
+  @each $display-value in $display-values {
+    .display-#{$key}-#{$display-value} {
+      @include min-width('#{$key}') {
+        display: #{$display-value};
+      }
+    }
+  }
+}
