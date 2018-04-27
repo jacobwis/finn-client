@@ -1,4 +1,5 @@
 // Abstracts
+@import 'abstracts/breakpoints';
 @import 'abstracts/colors';
 
 // Base
@@ -8,6 +9,23 @@
 // Components
 @import 'components/button';
 @import 'components/iconButton';
+@import 'components/input';
+
+.display-none {
+  display: none;
+}
+
+.display-md-none {
+  @include min-width('md') {
+    display: none;
+  }
+}
+
+.display-md-flex {
+  @include min-width('md') {
+    display: flex;
+  }
+}
 
 .container {
   margin: 0 auto;
@@ -16,24 +34,23 @@
 }
 
 .NavBar {
-  // background-color: red;
+  align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 60px;
-  align-items: center;
-}
+  height: 60px;
 
-.NavBar__button {
-  background-color: transparent;
-  border: 0;
-  color: hsl(0, 0, 60);
-  font-size: 20px;
-  padding: 0;
+  @include min-width('md') {
+    display: flex;
+  }
 }
 
 .NavBar__logo-wrapper {
   display: flex;
   justify-content: center;
+
+  @include min-width('md') {
+    justify-content: flex-start;
+  }
 }
 
 .NavBar__logo {
@@ -41,4 +58,13 @@
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
+}
+
+.NavBar__search-wrapper {
+  flex: 1;
+  padding: 0 16px;
+}
+
+.NavBar__button {
+  margin-left: 8px;
 }
