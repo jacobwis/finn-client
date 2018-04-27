@@ -22,7 +22,7 @@ const Button: React.StatelessComponent<Props> = props => {
 
   return (
     <button className={classStr} onClick={onClick} style={style}>
-      {children}
+      <span>{children}</span>
     </button>
   );
 };

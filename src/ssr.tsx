@@ -27,6 +27,7 @@ export default function serverRenderer() {
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>${View.getTitle()}</title>
       ${IS_PROD ? `<link rel="stylesheet" href="/styles.css">` : ''}
+      <script defer src="/fontawesome-all.min.js"></script>
     </head>
     <body>
       <div id="root">${html}</div>

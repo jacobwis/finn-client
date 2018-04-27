@@ -1,0 +1,105 @@
+.IconButton {
+  background-color: transparent;
+  border: 0;
+  font-size: 18px;
+  height: 46px;
+  padding: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.IconButton--solid {
+  border-radius: 50px;
+  width: 46px;
+}
+
+.IconButton--solid.IconButton--primary {
+  background-color: $color-primary;
+  color: #fff;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+
+  &:active {
+    background-color: $color-primary;
+  }
+}
+
+.IconButton--solid.IconButton--secondary {
+  background-color: hsl(0, 0, 70);
+  color: #fff;
+
+  &:hover {
+    background-color: hsl(0, 0, 60);
+  }
+
+  &:active {
+    background-color: hsl(0, 0, 70);
+  }
+}
+
+.IconButton--outline {
+  border: 2px solid transparent;
+  border-radius: 50px;
+  width: 46px;
+}
+
+.IconButton--outline.IconButton--primary {
+  border-color: $color-primary;
+  color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary-dark;
+    border-color: $color-primary-dark;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: #fff;
+  }
+}
+
+.IconButton--outline.IconButton--secondary {
+  border-color: hsl(0, 0, 70);
+  color: hsl(0, 0, 50);
+
+  &:hover {
+    background-color: hsl(0, 0, 60);
+    border-color: hsl(0, 0, 60);
+    color: #fff;
+  }
+
+  &:active {
+    background-color: hsl(0, 0, 70);
+    border-color: hsl(0, 0, 70);
+  }
+}
+
+.IconButton--text.IconButton--primary {
+  color: $color-primary;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+  &:active {
+    color: $color-primary;
+  }
+}
+
+.IconButton--text.IconButton--secondary {
+  color: hsl(0, 0, 50);
+
+  &:hover {
+    color: hsl(0, 0, 20);
+  }
+
+  &:active {
+    color: hsl(0, 0, 50);
+  }
+}

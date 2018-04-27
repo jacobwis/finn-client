@@ -1,36 +1,34 @@
-const express = require("express");
+const express = require('express');
 
 const PORT = 3000;
-const ENV = process.env.NODE_ENV || "development";
-const IS_PROD = ENV === "production";
+const ENV = process.env.NODE_ENV || 'development';
+const IS_PROD = ENV === 'production';
 
 const app = express();
 
-if (IS_PROD) {
-  const serverRenderer = require("./build/ssr").default;
+app.use(express.static('public'));
 
-  app.use(express.static("build"));
+if (IS_PROD) {
+  const serverRenderer = require('./build/ssr').default;
+
+  app.use(express.static('build'));
   app.use(serverRenderer());
 } else {
-  const webpack = require("webpack");
-  const webpackDevMiddleware = require("webpack-dev-middleware");
-  const webpackHotMiddleware = require("webpack-hot-middleware");
-  const webpackHotServerMiddleware = require("webpack-hot-server-middleware");
-  const config = require("./webpack.config");
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+  const config = require('./webpack.config');
 
   const compiler = webpack(config);
 
   app.use(
     webpackDevMiddleware(compiler, {
-      publicPath: "/",
+      publicPath: '/',
       serverSideRender: true
     })
   );
-  app.use(
-    webpackHotMiddleware(
-      compiler.compilers.find(compiler => compiler.name === "client")
-    )
-  );
+  app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));
   app.use(webpackHotServerMiddleware(compiler));
 }
 

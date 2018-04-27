@@ -7,3 +7,38 @@
 
 // Components
 @import 'components/button';
+@import 'components/iconButton';
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 16px;
+}
+
+.NavBar {
+  // background-color: red;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 60px;
+  align-items: center;
+}
+
+.NavBar__button {
+  background-color: transparent;
+  border: 0;
+  color: hsl(0, 0, 60);
+  font-size: 20px;
+  padding: 0;
+}
+
+.NavBar__logo-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.NavBar__logo {
+  color: $color-primary;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
