@@ -1,0 +1,42 @@
+.NavBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  @include min-width('md') {
+    display: flex;
+    padding-top: 18px;
+  }
+}
+
+.NavBar__mobile-content {
+  @include min-width('md') {
+    display: none;
+  }
+}
+
+.NavBar__logo-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.NavBar__logo {
+  color: $color-primary;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.NavBar__desktop-content {
+  display: none;
+  flex: 1;
+  justify-content: space-between;
+  padding-left: 18px;
+
+  @include min-width('md') {
+    display: flex;
+  }
+}
+
+.NavBar__auth-buttons button {
+  margin-left: 8px;
+}

@@ -9,6 +9,7 @@ interface Props {
   mdDisplay?: DisplayValue;
   lgDisplay?: DisplayValue;
   xlDisplay?: DisplayValue;
+  justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around';
 }
 
 const addDisplayClass = (value: string, prefix?: string) => {

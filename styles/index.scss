@@ -10,6 +10,7 @@
 @import 'components/button';
 @import 'components/iconButton';
 @import 'components/input';
+@import 'components/navBar';
 
 // Utilities
 @import 'utilities/display';
@@ -18,40 +19,4 @@
   margin: 0 auto;
   max-width: 960px;
   padding: 0 16px;
-}
-
-.NavBar {
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  height: 60px;
-
-  @include min-width('md') {
-    display: flex;
-  }
-}
-
-.NavBar__logo-wrapper {
-  display: flex;
-  justify-content: center;
-
-  @include min-width('md') {
-    justify-content: flex-start;
-  }
-}
-
-.NavBar__logo {
-  color: $color-primary;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.NavBar__search-wrapper {
-  flex: 1;
-  padding: 0 16px;
-}
-
-.NavBar__button {
-  margin-left: 8px;
 }
