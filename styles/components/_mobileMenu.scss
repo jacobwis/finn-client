@@ -1,0 +1,37 @@
+.MobileMenu__overlay {
+  background-color: hsl(0, 0, 50);
+  height: 100vh;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.MobileMenu {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  z-index: 9;
+}
+
+.MobileMenu__top {
+  padding: 8px 16px;
+}
+
+.MobileMenu__links {
+  flex: 1;
+  padding: 8px 16px;
+}
+
+.MobileMenu__auth-buttons {
+  padding: 16px;
+
+  button {
+    margin-top: 10px;
+  }
+}

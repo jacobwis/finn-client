@@ -15,6 +15,29 @@ describe('<IconButton />', () => {
     expect(btn.children()).toContainReact(icon());
   });
 
+  it('should pass "props.dataTestID" to the element', () => {
+    const btn = shallow(
+      <IconButton dataTestID="test">
+        <IconButton.Icon icon="bars" />
+      </IconButton>
+    );
+
+    expect(btn.prop('data-test-id')).toEqual('test');
+  });
+
+  it('should call "props.onClick" when clicked', () => {
+    const onClick = jest.fn();
+    const btn = shallow(
+      <IconButton onClick={onClick}>
+        <IconButton.Icon icon="bars" />
+      </IconButton>
+    );
+
+    btn.simulate('click');
+
+    expect(onClick).toHaveBeenCalled();
+  });
+
   it('"props.theme" should be "primary" by default', () => {
     const btn = mount(
       <IconButton>

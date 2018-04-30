@@ -2,6 +2,7 @@ import * as React from 'react';
 
 interface Props {
   className?: string;
+  fullWidth?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   style?: React.CSSProperties;
   theme?: 'primary';
@@ -9,10 +10,13 @@ interface Props {
 }
 
 const Button: React.StatelessComponent<Props> = props => {
-  const { children, className, onClick, style, theme, type } = props;
+  const { children, className, fullWidth, onClick, style, theme, type } = props;
 
   let classStr = 'Button';
+
   if (className) classStr += ` ${className}`;
+
+  if (fullWidth) classStr += ' Button--full-width';
 
   if (theme === 'primary') classStr += ' Button--primary';
 

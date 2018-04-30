@@ -3,14 +3,26 @@ import Button from './Button';
 import IconButton from './IconButton';
 import Input from './Input';
 import Icon from './Icon';
+import MobileMenuToggle from './MobileMenuToggle';
 
 const NavBar: React.StatelessComponent = () => (
   <div className="container">
     <div className="NavBar">
       <div className="NavBar__mobile-content">
-        <IconButton theme="secondary" type="text">
-          <IconButton.Icon icon="bars" prefix="solid" />
-        </IconButton>
+        <MobileMenuToggle>
+          {mobileMenu => {
+            return (
+              <IconButton
+                dataTestID="menu-toggle"
+                onClick={mobileMenu.show}
+                theme="secondary"
+                type="text"
+              >
+                <IconButton.Icon icon="bars" prefix="solid" />
+              </IconButton>
+            );
+          }}
+        </MobileMenuToggle>
       </div>
       <div className="NavBar__logo-wrapper">
         <a className="NavBar__logo" href="#">

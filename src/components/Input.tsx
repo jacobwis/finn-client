@@ -3,6 +3,7 @@ import Icon from './Icon';
 
 interface Props {
   className?: string;
+  fullWidth?: boolean;
   iconLeft?: () => React.ReactElement<Icon>;
   iconRight?: () => React.ReactElement<Icon>;
   name?: string;
@@ -13,7 +14,17 @@ interface Props {
 }
 
 const Input: React.StatelessComponent<Props> = props => {
-  const { className, iconLeft, iconRight, name, onChange, placeholder, type, value } = props;
+  const {
+    className,
+    fullWidth,
+    iconLeft,
+    iconRight,
+    name,
+    onChange,
+    placeholder,
+    type,
+    value
+  } = props;
 
   let classStr = 'Input';
 
@@ -22,8 +33,12 @@ const Input: React.StatelessComponent<Props> = props => {
   if (iconLeft) classStr += ' Input--with-icon-left';
   if (iconRight) classStr += ' Input--with-icon-right';
 
+  let wrapperClassStr = 'Input__wrapper';
+
+  if (fullWidth) wrapperClassStr += ' Input__wrapper--full-width';
+
   return (
-    <span className="Input__wrapper">
+    <span className={wrapperClassStr}>
       {iconLeft && <span className="Input__icon-left">{iconLeft()}</span>}
       <input
         className={classStr}

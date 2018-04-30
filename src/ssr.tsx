@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from './config/store';
 import App from './App';
 import View from './components/View';
 
@@ -11,11 +13,14 @@ const IS_PROD = ENV === 'production';
 export default function serverRenderer() {
   return (req: Request, res: Response) => {
     const context = {};
+    const store = configureStore();
 
     const html = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
+      <Provider store={store}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </Provider>
     );
 
     res.send(`
@@ -31,6 +36,10 @@ export default function serverRenderer() {
     </head>
     <body>
       <div id="root">${html}</div>
+      <div id="modal-root"><h1>Hey</h1></div>
+      <script>
+        window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}
+      </script>
       <script src="/build.js"></script>
     </body>
     </html>    

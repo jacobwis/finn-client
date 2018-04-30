@@ -14,6 +14,12 @@ describe('<Button />', () => {
     expect(btn).toHaveClassName('CustomClass');
   });
 
+  it('should have the class "Button--full-width" if "props.fullWidth" equals true', () => {
+    const btn = shallow(<Button fullWidth />);
+
+    expect(btn).toHaveClassName('Button--full-width');
+  });
+
   it('should call "props.onClick" when the element is clicked', () => {
     const onClick = jest.fn();
     const btn = shallow(<Button onClick={onClick} />);

@@ -5,7 +5,7 @@ import View from './components/View';
 import Playground from './Playground';
 
 const App = () => (
-  <div>
+  <>
     <Route
       path="/"
       exact
@@ -17,7 +17,7 @@ const App = () => (
       )}
     />
     <Route path="/playground" component={Playground} />
-  </div>
+  </>
 );
 
 export default hot(module)(App);

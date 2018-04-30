@@ -22,6 +22,12 @@ describe('<Input />', () => {
     expect(input.find('input')).toHaveClassName('CustomClass');
   });
 
+  it('should have the class "Input__wrapper--full-width" if "props.fullWidth" is true', () => {
+    const input = shallow(<Input fullWidth />);
+
+    expect(input).toHaveClassName('Input__wrapper--full-width');
+  });
+
   it('should render "props.iconLeft"', () => {
     const input = shallow(<Input iconLeft={() => <Icon icon="search" />} />);
 

@@ -11,6 +11,10 @@ class Portal extends React.Component {
     }
   }
 
+  public canUseDOM = () => {
+    return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+  };
+
   public componentDidMount() {
     if (typeof document !== 'undefined') {
       document.body.appendChild(this.el);
@@ -22,10 +26,10 @@ class Portal extends React.Component {
   }
 
   public render() {
-    if (this.el) {
-      return ReactDOM.createPortal(this.props.children, this.el);
+    if (!this.canUseDOM()) {
+      return null;
     }
-    return null;
+    return ReactDOM.createPortal(this.props.children, this.el);
   }
 }
 
