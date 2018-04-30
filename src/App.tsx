@@ -12,7 +12,7 @@ const App = () => (
       render={() => (
         <View title="Home">
           <h1>Home View</h1>
-          <Link to="/about">About</Link>
+          <Link to="/playground">Playground</Link>
         </View>
       )}
     />
