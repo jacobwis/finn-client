@@ -5,6 +5,10 @@
   line-height: 18px;
   padding: 0;
   height: 46px;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .Button--solid {
@@ -13,6 +17,20 @@
   border-radius: 4px;
   color: #fff;
   padding: 0 16px;
+
+  &:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--hover-bg-color);
+  }
+
+  &:active {
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+  }
+
+  &:focus {
+    background-color: red;
+  }
 }
 
 .Button--outline {
@@ -21,6 +39,17 @@
   border-radius: 4px;
   color: var(--main-color);
   padding: 0 16px;
+
+  &:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--hover-bg-color);
+    color: #fff;
+  }
+
+  &:active {
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+  }
 }
 
 .Button--text {
@@ -31,6 +60,7 @@
 
 .Button--primary {
   --main-color: #{$color-primary};
+  --hover-bg-color: #{$color-primary-dark};
 }
 
 .Button--full-width {
