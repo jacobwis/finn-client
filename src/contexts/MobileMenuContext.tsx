@@ -41,9 +41,11 @@ export class Provider extends React.Component<{}, State> {
   };
 
   public componentDidMount() {
-    const mq = window.matchMedia('(min-width: 840px)');
-    mq.addListener(this.onWidthChange);
-    this.onWidthChange(mq);
+    if (window.matchMedia) {
+      const mq = window.matchMedia('(min-width: 840px)');
+      mq.addListener(this.onWidthChange);
+      this.onWidthChange(mq);
+    }
   }
 
   public render() {

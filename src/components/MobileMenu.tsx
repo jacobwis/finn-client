@@ -4,6 +4,7 @@ import Button from './Button';
 import Icon from './Icon';
 import IconButton from './IconButton';
 import Input from './Input';
+import Overlay from './Overlay';
 
 class MobileMenu extends React.Component {
   public render() {
@@ -11,7 +12,7 @@ class MobileMenu extends React.Component {
       <MobileMenuContext.Consumer>
         {({ hide }) => (
           <>
-            <div onClick={hide} className="MobileMenu__overlay" />
+            <Overlay dataTestID="menu-overlay" onClick={hide} />
             <div className="MobileMenu">
               <div className="MobileMenu__top">
                 <IconButton dataTestID="hide-menu" onClick={hide} theme="secondary" type="text">

@@ -33,7 +33,7 @@ describe('<MobileMenu />', () => {
       visible: true
     });
 
-    wrap.find('.MobileMenu__overlay').simulate('click');
+    wrap.find('[data-test-id="menu-overlay"]').simulate('click');
 
     expect(wrap.state().visible).toEqual(false);
   });

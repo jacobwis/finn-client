@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as MobileMenuContext from '../contexts/MobileMenuContext';
+import AuthModal from './AuthModal';
 import NavBar from './NavBar';
 import MobileMenu from '../components/MobileMenu';
 
@@ -16,6 +17,7 @@ class MainLayout extends React.Component {
             return mobileMenu.visible && <MobileMenu />;
           }}
         </MobileMenuContext.Consumer>
+        <AuthModal />
       </>
     );
   }
