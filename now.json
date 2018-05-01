@@ -1,0 +1,7 @@
+{
+  "name": "finn-client",
+  "alias": ["www.finnreading.com", "finnreading.com"],
+  "env": {
+    "API_URL": "https://api.finnreading.com"
+  }
+}

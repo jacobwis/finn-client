@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const webpack = require('webpack');
 const CSSExtractPlugin = require('mini-css-extract-plugin');
@@ -5,7 +6,7 @@ const CSSExtractPlugin = require('mini-css-extract-plugin');
 const ENV = process.env.NODE_ENV || 'development';
 const IS_PROD = ENV === 'production';
 
-const API_URL = IS_PROD ? 'https://api.finnreading.com' : 'http://localhost:3001';
+const API_URL = process.env.API_URL | 'http://localhost:3001';
 
 module.exports = {
   entry: (() => {

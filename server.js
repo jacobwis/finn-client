@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const proxy = require('http-proxy-middleware');
 require('isomorphic-fetch');
@@ -5,13 +6,16 @@ require('isomorphic-fetch');
 const PORT = 3000;
 const ENV = process.env.NODE_ENV || 'development';
 const IS_PROD = ENV === 'production';
+const API_URL = process.env.API_URL;
+
+console.log(API_URL);
 
 const app = express();
 
 app.use(express.static('public'));
 
 const apiProxy = proxy({
-  target: 'http://localhost:3001',
+  target: API_URL,
   changeOrigin: true
 });
 

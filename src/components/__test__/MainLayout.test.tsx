@@ -2,6 +2,7 @@ import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import * as MobileMenuContext from '../../contexts/MobileMenuContext';
 import * as AuthModalContext from '../../contexts/AuthModalContext';
+import MockApollo from '../../utils/mockApollo';
 import MainLayout from '../MainLayout';
 
 describe('<MainLayout />', () => {
@@ -18,7 +19,9 @@ describe('<MainLayout />', () => {
   it('should render the AuthModal component when AuthModalContext.visible equals true', () => {
     const wrap = mount(
       <AuthModalContext.Provider>
-        <MainLayout />
+        <MockApollo>
+          <MainLayout />
+        </MockApollo>
       </AuthModalContext.Provider>
     );
 
@@ -32,7 +35,9 @@ describe('<MainLayout />', () => {
   it('should not render the AuthModal component with AuthModalContext.visible equals false', () => {
     const wrap = mount(
       <AuthModalContext.Provider>
-        <MainLayout />
+        <MockApollo>
+          <MainLayout />
+        </MockApollo>
       </AuthModalContext.Provider>
     );
 
@@ -46,7 +51,9 @@ describe('<MainLayout />', () => {
   it('should render the MobileMenu component when MobileMenuContext.visible equals true', () => {
     const wrap = mount(
       <MobileMenuContext.Provider>
-        <MainLayout />
+        <MockApollo>
+          <MainLayout />
+        </MockApollo>
       </MobileMenuContext.Provider>
     );
 
@@ -60,7 +67,9 @@ describe('<MainLayout />', () => {
   it('should not render the MobileMenu component when MobileMenuContext.visible equals false', () => {
     const wrap = mount(
       <MobileMenuContext.Provider>
-        <MainLayout />
+        <MockApollo>
+          <MainLayout />
+        </MockApollo>
       </MobileMenuContext.Provider>
     );
 
