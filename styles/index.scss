@@ -11,6 +11,7 @@
 @import 'components/button';
 @import 'components/iconButton';
 @import 'components/input';
+@import 'components/mainLayout';
 @import 'components/mobileMenu';
 @import 'components/navBar';
 
@@ -21,4 +22,5 @@
   margin: 0 auto;
   max-width: 960px;
   padding: 0 16px;
+  width: 100%;
 }
