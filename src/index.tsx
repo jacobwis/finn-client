@@ -20,5 +20,3 @@ ReactDOM.hydrate(
   </Provider>,
   document.getElementById('root')
 );
-
-ReactDOM.hydrate(<h1>Hey</h1>, document.getElementById('modal-root'));

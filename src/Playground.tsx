@@ -5,6 +5,7 @@ import Box from './components/Box';
 import NavBar from './components/NavBar';
 import MobileMenu from './components/MobileMenu';
 import Portal from './components/Portal';
+import AuthPrompt from './components/AuthPrompt';
 
 interface Props {
   mobileMenuVisible: boolean;
@@ -15,7 +16,9 @@ class Playground extends React.Component<Props> {
     return (
       <>
         <NavBar />
-        <Link to="/">Home</Link>
+        <div className="container">
+          <AuthPrompt />
+        </div>
         {this.props.mobileMenuVisible && (
           <Portal>
             <MobileMenu />
@@ -31,4 +34,3 @@ const mapStateToProps = (state: any) => ({
 });
 
 export default connect(mapStateToProps)(Playground);
-// export default Playground;

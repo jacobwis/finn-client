@@ -36,7 +36,7 @@ export default function serverRenderer() {
     </head>
     <body>
       <div id="root">${html}</div>
-      <div id="modal-root"><h1>Hey</h1></div>
+      <div id="modal-root"></div>
       <script>
         window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}
       </script>
