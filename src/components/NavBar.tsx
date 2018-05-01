@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as AuthModalContext from '../contexts/AuthModalContext';
 import Button from './Button';
 import IconButton from './IconButton';
 import Input from './Input';
@@ -31,10 +32,16 @@ const NavBar: React.StatelessComponent = () => (
       </div>
       <div className="NavBar__desktop-content">
         <Input iconLeft={() => <Icon icon="search" />} placeholder="Search" />
-        <div className="NavBar__auth-buttons">
-          <Button type="outline">Sign In</Button>
-          <Button>Sign Up</Button>
-        </div>
+        <AuthModalContext.Consumer>
+          {ctx => (
+            <div className="NavBar__auth-buttons">
+              <Button onClick={ctx.show} type="outline">
+                Sign In
+              </Button>
+              <Button onClick={ctx.hide}>Sign Up</Button>
+            </div>
+          )}
+        </AuthModalContext.Consumer>
       </div>
     </div>
   </div>

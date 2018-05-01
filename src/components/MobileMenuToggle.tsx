@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { AppState } from '../reducers';
 import { showMobileMenu, hideMobileMenu } from '../actions';
 
 interface Props {
@@ -15,7 +16,7 @@ interface PropsFromState {
   visible: boolean;
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppState) => ({
   visible: state.mobileMenu.visible
 });
 
