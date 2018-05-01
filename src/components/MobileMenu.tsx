@@ -1,14 +1,14 @@
 import * as React from 'react';
+import * as MobileMenuContext from '../contexts/MobileMenuContext';
 import Button from './Button';
 import Icon from './Icon';
 import IconButton from './IconButton';
 import Input from './Input';
-import MobileMenuToggle from './MobileMenuToggle';
 
 class MobileMenu extends React.Component {
   public render() {
     return (
-      <MobileMenuToggle>
+      <MobileMenuContext.Consumer>
         {({ hide }) => (
           <>
             <div onClick={hide} className="MobileMenu__overlay" />
@@ -30,7 +30,7 @@ class MobileMenu extends React.Component {
             </div>
           </>
         )}
-      </MobileMenuToggle>
+      </MobileMenuContext.Consumer>
     );
   }
 }

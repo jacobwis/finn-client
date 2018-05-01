@@ -18,7 +18,7 @@ class IconButton extends React.Component<Props> {
   public static Icon = Icon;
 
   public render() {
-    const { children, dataTestID, onClick, theme, type, ...props } = this.props;
+    const { children, dataTestID, onClick, theme, type } = this.props;
 
     let buttonClass = 'IconButton';
 

@@ -1,4 +1,0 @@
-export enum TypeKeys {
-  SHOW_MOBILE_MENU = 'MOBILE_MENU:SHOW',
-  HIDE_MOBILE_MENU = 'MOBILE_MENU:HIDE'
-}

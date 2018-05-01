@@ -4,12 +4,12 @@ import View from '../View';
 
 describe('<View />', () => {
   it('should set "document.title" to the value of "props.title"', () => {
-    const wrap = shallow(<View title="Test Title" />);
+    shallow(<View title="Test Title" />);
     expect(document.title).toEqual('Test Title');
   });
 
   it('the title value should be available via View.getTitle()', () => {
-    const wrap = shallow(<View title="Another Title" />);
+    shallow(<View title="Another Title" />);
 
     expect(View.getTitle()).toEqual('Another Title');
   });

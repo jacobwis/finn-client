@@ -1,21 +1,18 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Provider } from 'react-redux';
-import { configureStore } from '../../config/store';
+import { mount } from 'enzyme';
+import * as MobileMenuContext from '../../contexts/MobileMenuContext';
 import NavBar from '../NavBar';
 
 describe('<NavBar />', () => {
   it('clicking the menu toggle button should show the menu', () => {
-    const store = configureStore();
-
     const wrap = mount(
-      <Provider store={store}>
+      <MobileMenuContext.Provider>
         <NavBar />
-      </Provider>
+      </MobileMenuContext.Provider>
     );
 
     wrap.find('[data-test-id="menu-toggle"]').simulate('click');
 
-    expect(store.getState().mobileMenu.visible).toEqual(true);
+    expect(wrap.state().visible).toEqual(true);
   });
 });
