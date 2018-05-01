@@ -33,10 +33,12 @@ const NavBar: React.StatelessComponent = () => (
         <AuthModalContext.Consumer>
           {ctx => (
             <div className="NavBar__auth-buttons">
-              <Button onClick={ctx.show} type="outline">
+              <Button dataTestID="sign-in-btn" onClick={ctx.show} type="outline">
                 Sign In
               </Button>
-              <Button onClick={ctx.hide}>Sign Up</Button>
+              <Button dataTestID="sign-up-btn" onClick={ctx.show}>
+                Sign Up
+              </Button>
             </div>
           )}
         </AuthModalContext.Consumer>

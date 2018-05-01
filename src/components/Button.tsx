@@ -2,6 +2,7 @@ import * as React from 'react';
 
 interface Props {
   className?: string;
+  dataTestID?: string;
   fullWidth?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   style?: React.CSSProperties;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const Button: React.StatelessComponent<Props> = props => {
-  const { children, className, fullWidth, onClick, style, theme, type } = props;
+  const { children, className, dataTestID, fullWidth, onClick, style, theme, type } = props;
 
   let classStr = 'Button';
 
@@ -25,7 +26,7 @@ const Button: React.StatelessComponent<Props> = props => {
   if (type === 'solid') classStr += ' Button--solid';
 
   return (
-    <button className={classStr} onClick={onClick} style={style}>
+    <button className={classStr} data-test-id={dataTestID} onClick={onClick} style={style}>
       <span>{children}</span>
     </button>
   );

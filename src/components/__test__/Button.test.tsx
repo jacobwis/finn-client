@@ -14,6 +14,12 @@ describe('<Button />', () => {
     expect(btn).toHaveClassName('CustomClass');
   });
 
+  it('should pass "props.dataTestID" to the element', () => {
+    const btn = shallow(<Button dataTestID="test-id" />);
+
+    expect(btn.prop('data-test-id')).toEqual('test-id');
+  });
+
   it('should have the class "Button--full-width" if "props.fullWidth" equals true', () => {
     const btn = shallow(<Button fullWidth />);
 
