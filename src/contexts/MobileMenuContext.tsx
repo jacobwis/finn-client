@@ -34,6 +34,18 @@ export class Provider extends React.Component<{}, State> {
     show: this.show
   };
 
+  public onWidthChange = (mq: MediaQueryList) => {
+    if (mq.matches) {
+      this.hide();
+    }
+  };
+
+  public componentDidMount() {
+    const mq = window.matchMedia('(min-width: 840px)');
+    mq.addListener(this.onWidthChange);
+    this.onWidthChange(mq);
+  }
+
   public render() {
     return <Context.Provider value={this.state}>{this.props.children}</Context.Provider>;
   }
