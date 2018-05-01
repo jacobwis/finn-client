@@ -1,21 +1,30 @@
 import { Request, Response } from 'express';
 import * as React from 'react';
-import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { createHttpLink } from 'apollo-link-http';
+import { ApolloProvider, renderToStringWithData } from 'react-apollo';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
 import App from './App';
 import View from './components/View';
 
 const ENV = process.env.NODE_ENV || 'development';
 const IS_PROD = ENV === 'production';
+const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 export default function serverRenderer() {
-  return (req: Request, res: Response) => {
+  return async (req: Request, res: Response) => {
     const context = {};
+    const client = initApolloClient({
+      cookie: req.header('cookie')
+    });
 
-    const html = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
+    const html = await renderToStringWithData(
+      <ApolloProvider client={client}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </ApolloProvider>
     );
 
     res.send(`
@@ -32,9 +41,28 @@ export default function serverRenderer() {
     <body>
       <div id="root">${html}</div>
       <div id="modal-root"></div>
+      <script>
+        window.__APOLLO_STATE__=${JSON.stringify(client.extract())}
+      </script>      
       <script src="/build.js"></script>
     </body>
     </html>    
     `);
   };
 }
+
+const initApolloClient = (headers: { [key: string]: any }) => {
+  const link = createHttpLink({
+    uri: `${API_URL}/graphql`,
+    credentials: 'same-origin',
+    headers
+  });
+
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    ssrMode: true,
+    link
+  });
+
+  return client;
+};
