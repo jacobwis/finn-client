@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import canUseDOM from '../utils/canUseDOM';
+import { preloadBookData } from '../utils/preload';
 import { SearchQuery, SEARCH_QUERY } from '../api';
 import BookListGrid from '../components/BookListGrid';
 import Heading from '../components/Heading';
@@ -77,7 +78,12 @@ class SearchView extends React.Component<Props, State> {
                       });
                     }}
                   >
-                    <BookListGrid books={books} />
+                    <BookListGrid
+                      books={books}
+                      onHover={book => {
+                        preloadBookData(client, book.id);
+                      }}
+                    />
                   </InfiniteScroll>
                 );
               }}

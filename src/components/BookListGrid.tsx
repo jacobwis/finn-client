@@ -4,6 +4,7 @@ import { Book } from '../api';
 
 interface Props {
   books: Book[];
+  onHover?: (book: Book) => void;
 }
 
 interface State {
@@ -67,7 +68,7 @@ class BookListGrid extends React.Component<Props, State> {
             const cover = covers.thumbnail || covers.smallThumbnail;
             return (
               <Link key={book.id} to={`/books/${book.id}`}>
-                <div className="BookListGrid__item">
+                <div onMouseOver={() => this.props.onHover(book)} className="BookListGrid__item">
                   <div className="BookListGrid__cover">
                     <img src={cover} />
                   </div>
