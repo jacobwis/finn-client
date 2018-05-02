@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Book } from '../types';
+import bookInfo from '../fragments/bookInfo';
 
 export interface SearchQueryResponse {
   search: Book[];
@@ -19,20 +20,10 @@ export interface SearchQueryOptions {
 export const SEARCH_QUERY = gql`
   query SearchQuery($query: String, $options: BookSearchOptions) {
     search(query: $query, options: $options) {
-      id
-      title
-      authors
-      description
-      covers {
-        thumbnail
-        small
-        medium
-        large
-        smallThumbnail
-        extraLarge
-      }
+      ...bookInfo
     }
   }
+  ${bookInfo}
 `;
 
 export class SearchQuery extends Query<SearchQueryResponse, SearchQueryVariables> {}

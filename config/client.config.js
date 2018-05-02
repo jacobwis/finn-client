@@ -41,7 +41,8 @@ module.exports = {
   name: 'client',
   output: {
     filename: 'build.js',
-    path: path.resolve(__dirname, '..', 'build')
+    path: path.resolve(__dirname, '..', 'build'),
+    publicPath: '/'
   },
   plugins: (() => {
     const plugins = [

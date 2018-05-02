@@ -6,8 +6,9 @@ import * as MobileMenuContext from './contexts/MobileMenuContext';
 import MainLayout from './components/MainLayout';
 
 // views
-import Playground from './Playground';
+import BookView from './views/BookView';
 import HomeView from './views/HomeView';
+import Playground from './Playground';
 import SearchView from './views/SearchView';
 
 class App extends React.Component {
@@ -23,6 +24,14 @@ class App extends React.Component {
                   <MainLayout>
                     <Route path="/" exact component={HomeView} />
                     <Route path="/search" component={SearchView} />
+                    <Route
+                      path="/books"
+                      render={({ match }) => (
+                        <>
+                          <Route path={`${match.url}/:id`} component={BookView} />
+                        </>
+                      )}
+                    />
                   </MainLayout>
                 )}
               />

@@ -16,4 +16,5 @@ export interface Book {
   categories: string[];
   covers: CoverLinks;
   isOnList: boolean;
+  description: string;
 }
