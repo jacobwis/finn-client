@@ -1,0 +1,25 @@
+.ReadingListEmpty {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+}
+
+.ReadingListEmpty__heading {
+  color: hsl(0, 0, 20);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.ReadingListEmpty__text {
+  color: hsl(0, 0, 50);
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.ReadingListEmpty__search {
+  max-width: 500px;
+  width: 100%;
+}

@@ -2,10 +2,9 @@ import * as React from 'react';
 import * as AuthModalContext from '../contexts/AuthModalContext';
 import * as MobileMenuContext from '../contexts/MobileMenuContext';
 import Button from './Button';
-import Icon from './Icon';
 import IconButton from './IconButton';
-import Input from './Input';
 import Overlay from './Overlay';
+import SearchInput from './SearchInput';
 
 class MobileMenu extends React.Component {
   public render() {
@@ -21,7 +20,7 @@ class MobileMenu extends React.Component {
                 </IconButton>
               </div>
               <div className="MobileMenu__links">
-                <Input fullWidth iconLeft={() => <Icon icon="search" />} placeholder="Search" />
+                <SearchInput />
               </div>
               <AuthModalContext.Consumer>
                 {authModal => (

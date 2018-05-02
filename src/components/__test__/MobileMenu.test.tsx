@@ -4,7 +4,7 @@ import * as AuthModalContext from '../../contexts/AuthModalContext';
 import * as MobileMenuContext from '../../contexts/MobileMenuContext';
 import MobileMenu from '../MobileMenu';
 
-describe('<MobileMenu />', () => {
+describe.skip('<MobileMenu />', () => {
   it('clicking the close menu button should hide the menu', () => {
     const wrap = mount(
       <MobileMenuContext.Provider>

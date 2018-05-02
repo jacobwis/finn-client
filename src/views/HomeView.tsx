@@ -1,18 +1,29 @@
 import * as React from 'react';
 import { CurrentUserQuery, CURRENT_USER_QUERY } from '../api';
 import AuthPrompt from '../components/AuthPrompt';
-import MainLayout from '../components/MainLayout';
+import ReadingList from '../components/ReadingList';
+import View from '../components/View';
 
 class HomeView extends React.Component {
   public render() {
     return (
-      <MainLayout>
-        <CurrentUserQuery query={CURRENT_USER_QUERY}>
-          {({ data, loading }) => (
-            <div className="container">{!loading && !data.currentUser && <AuthPrompt />}</div>
-          )}
-        </CurrentUserQuery>
-      </MainLayout>
+      <View title="Finn">
+        <div className="container">
+          <CurrentUserQuery query={CURRENT_USER_QUERY}>
+            {({ data, loading }) => {
+              if (loading) {
+                return null;
+              }
+
+              const { currentUser } = data;
+              if (currentUser) {
+                return <ReadingList />;
+              }
+              return <AuthPrompt />;
+            }}
+          </CurrentUserQuery>
+        </div>
+      </View>
     );
   }
 }

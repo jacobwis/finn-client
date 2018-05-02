@@ -33,4 +33,14 @@ describe('<View />', () => {
 
     expect(wrap.text()).toEqual('Hello');
   });
+
+  it('the documents title should change when "props.title" changes', () => {
+    const view = shallow(<View title="Initial Title" />);
+
+    expect(document.title).toEqual('Initial Title');
+
+    view.setProps({ title: 'A New Title' });
+
+    expect(document.title).toEqual('A New Title');
+  });
 });

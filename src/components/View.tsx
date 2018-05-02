@@ -18,6 +18,13 @@ class View extends React.Component<Props> {
       document.title = title;
     }
   }
+
+  public componentDidUpdate(prevProps: Props) {
+    if (this.props.title !== prevProps.title) {
+      document.title = this.props.title;
+    }
+  }
+
   public render() {
     return this.props.children;
   }

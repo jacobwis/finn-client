@@ -1,12 +1,11 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { CurrentUserQuery, CURRENT_USER_QUERY } from '../api';
 import * as AuthModalContext from '../contexts/AuthModalContext';
 import * as MobileMenuContext from '../contexts/MobileMenuContext';
 import Button from './Button';
 import IconButton from './IconButton';
-import Input from './Input';
-import Icon from './Icon';
-import {} from 'react-apollo/test-utils';
+import SearchInput from './SearchInput';
 
 const NavBar: React.StatelessComponent = () => (
   <div className="container">
@@ -26,12 +25,12 @@ const NavBar: React.StatelessComponent = () => (
         </MobileMenuContext.Consumer>
       </div>
       <div className="NavBar__logo-wrapper">
-        <a className="NavBar__logo" href="#">
+        <Link className="NavBar__logo" to="/">
           Finn
-        </a>
+        </Link>
       </div>
       <div className="NavBar__desktop-content">
-        <Input iconLeft={() => <Icon icon="search" />} placeholder="Search" />
+        <SearchInput />
         <CurrentUserQuery query={CURRENT_USER_QUERY}>
           {({ data, loading }) => {
             if (loading) {
