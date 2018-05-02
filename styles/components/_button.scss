@@ -52,11 +52,29 @@
   background-color: transparent;
   border: 2px solid transparent;
   color: var(--main-color);
+
+  &:hover {
+    color: var(--hover-bg-color);
+  }
+
+  &:active {
+    color: var(--main-color);
+  }
 }
 
 .Button--primary {
   --main-color: #{$color-primary};
   --hover-bg-color: #{$color-primary-dark};
+}
+
+.Button--secondary {
+  --main-color: #{hsl(0, 0, 70)};
+  --hover-bg-color: #{hsl(0, 0, 50)};
+}
+
+.Button--danger {
+  --main-color: #cb4a35;
+  --hover-bg-color: #ae3b28;
 }
 
 .Button--full-width {

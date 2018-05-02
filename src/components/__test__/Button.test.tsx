@@ -56,6 +56,18 @@ describe('<Button />', () => {
     expect(btn).toHaveClassName('Button--primary');
   });
 
+  it('should have the class "Button--secondary" if "props.theme" equals "secondary"', () => {
+    const btn = shallow(<Button theme="secondary" />);
+
+    expect(btn).toHaveClassName('Button--secondary');
+  });
+
+  it('should have the class "Button--danger" if "props.theme" equals "danger"', () => {
+    const btn = shallow(<Button theme="danger" />);
+
+    expect(btn).toHaveClassName('Button--danger');
+  });
+
   it('"props.type" should be "solid" by default', () => {
     const btn = mount(<Button />);
 

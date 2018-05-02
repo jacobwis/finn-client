@@ -6,7 +6,7 @@ interface Props {
   fullWidth?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   style?: React.CSSProperties;
-  theme?: 'primary';
+  theme?: 'primary' | 'secondary' | 'danger';
   type?: 'solid' | 'outline' | 'text';
 }
 
@@ -20,6 +20,8 @@ const Button: React.StatelessComponent<Props> = props => {
   if (fullWidth) classStr += ' Button--full-width';
 
   if (theme === 'primary') classStr += ' Button--primary';
+  if (theme === 'secondary') classStr += ' Button--secondary';
+  if (theme === 'danger') classStr += ' Button--danger';
 
   if (type === 'outline') classStr += ' Button--outline';
   if (type === 'text') classStr += ' Button--text';
