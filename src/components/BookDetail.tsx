@@ -26,12 +26,18 @@ class BookDetail extends React.Component<Props, State> {
   };
 
   public showRemoveBookModal = () => {
+    // document.body.scrollTo({
+    //   top: 0
+    // });
+    window.scrollTo(0, 0);
+    document.body.classList.add('modal-open');
     this.setState(prevState => ({
       removeBookModalVisible: true
     }));
   };
 
   public hideRemoveBookModal = () => {
+    document.body.classList.remove('modal-open');
     this.setState(prevState => ({
       removeBookModalVisible: false
     }));

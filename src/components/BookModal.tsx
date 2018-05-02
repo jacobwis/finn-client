@@ -57,11 +57,16 @@ const BookModal: React.StatelessComponent<Props> = ({ book, onClose }) => (
                         query: READING_LIST_QUERY
                       });
 
+                      const i = prevReadingList.readingList.findIndex(b => b.id === book.id);
+
                       proxy.writeQuery({
                         query: READING_LIST_QUERY,
                         data: {
                           ...prevReadingList,
-                          readingList: [...prevReadingList.readingList, newBook]
+                          readingList: [
+                            ...prevReadingList.readingList.slice(0, i),
+                            ...prevReadingList.readingList.slice(i + 1)
+                          ]
                         }
                       });
                       // tslint:disable-next-line:no-empty
