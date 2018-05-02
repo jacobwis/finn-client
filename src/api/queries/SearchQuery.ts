@@ -8,14 +8,29 @@ export interface SearchQueryResponse {
 
 export interface SearchQueryVariables {
   query?: string;
+  options?: SearchQueryOptions;
+}
+
+export interface SearchQueryOptions {
+  startIndex?: number;
+  maxResults?: number;
 }
 
 export const SEARCH_QUERY = gql`
-  query SearchQuery($query: String) {
-    search(query: $query) {
+  query SearchQuery($query: String, $options: BookSearchOptions) {
+    search(query: $query, options: $options) {
       id
       title
-      subtitle
+      authors
+      description
+      covers {
+        thumbnail
+        small
+        medium
+        large
+        smallThumbnail
+        extraLarge
+      }
     }
   }
 `;

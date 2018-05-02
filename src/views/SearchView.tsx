@@ -2,7 +2,9 @@ import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import canUseDOM from '../utils/canUseDOM';
 import { SearchQuery, SEARCH_QUERY } from '../api';
+import BookListGrid from '../components/BookListGrid';
 import Heading from '../components/Heading';
+import InfiniteScroll from '../components/InfiniteScroll';
 import View from '../components/View';
 
 interface Props extends RouteComponentProps<any> {
@@ -45,14 +47,39 @@ class SearchView extends React.Component<Props, State> {
         <div className="container">
           <Heading>Search results for '{this.state.query}'</Heading>
           {this.state.query && (
-            <SearchQuery variables={{ query: this.state.query }} query={SEARCH_QUERY}>
-              {({ loading, data }) => {
+            <SearchQuery
+              variables={{ query: this.state.query, options: { startIndex: 0 } }}
+              query={SEARCH_QUERY}
+            >
+              {({ loading, data, fetchMore, client, ...p }) => {
                 if (loading) {
                   return <p>Loading...</p>;
                 }
-
                 const books = data.search;
-                return books.map(book => <h1 key={book.id}>{book.title}</h1>);
+                return (
+                  <InfiniteScroll
+                    onEndReached={() => {
+                      fetchMore({
+                        variables: {
+                          options: {
+                            startIndex: books.length
+                          }
+                        },
+                        updateQuery: (prev, { fetchMoreResult }) => {
+                          const filtered = fetchMoreResult.search.filter(book => {
+                            return prev.search.find(b => b.id === book.id) ? false : true;
+                          });
+                          return {
+                            ...prev,
+                            search: [...prev.search, ...filtered]
+                          };
+                        }
+                      });
+                    }}
+                  >
+                    <BookListGrid books={books} />
+                  </InfiniteScroll>
+                );
               }}
             </SearchQuery>
           )}

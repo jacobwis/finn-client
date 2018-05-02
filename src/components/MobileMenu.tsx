@@ -20,7 +20,7 @@ class MobileMenu extends React.Component {
                 </IconButton>
               </div>
               <div className="MobileMenu__links">
-                <SearchInput />
+                <SearchInput onSubmit={hide} />
               </div>
               <AuthModalContext.Consumer>
                 {authModal => (

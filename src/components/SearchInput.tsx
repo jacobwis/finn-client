@@ -3,11 +3,15 @@ import Icon from './Icon';
 import Input from './Input';
 import Navigator from './Navigator';
 
+interface Props {
+  onSubmit?: () => void;
+}
+
 interface State {
   value: string;
 }
 
-class SearchInput extends React.Component<{}, State> {
+class SearchInput extends React.Component<Props, State> {
   public state = {
     value: ''
   };
@@ -20,6 +24,10 @@ class SearchInput extends React.Component<{}, State> {
     }));
   };
 
+  public clearInput = () => {
+    this.setState(() => ({ value: '' }));
+  };
+
   public render() {
     return (
       <Navigator>
@@ -28,6 +36,9 @@ class SearchInput extends React.Component<{}, State> {
             onSubmit={e => {
               e.preventDefault();
               history.push(`/search?q=${this.state.value}`);
+              this.clearInput();
+              // tslint:disable-next-line:no-unused-expression
+              this.props.onSubmit && this.props.onSubmit();
             }}
           >
             <Input
