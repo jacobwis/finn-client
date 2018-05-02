@@ -16,7 +16,7 @@ class InfiniteScroll extends React.Component<Props> {
 
   public componentDidMount() {
     const observer = new IntersectionObserver(this.onIntersectionChange, {
-      rootMargin: '0px 0px 500px 0px'
+      rootMargin: '0px 0px 50% 0px'
     });
 
     observer.observe(this.Target);
