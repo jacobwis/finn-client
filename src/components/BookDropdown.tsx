@@ -12,7 +12,6 @@ class BookDropdown extends React.Component<Props> {
   };
   public render() {
     const { book } = this.props;
-
     return (
       <Toggle>
         {({ value, setTrue, setFalse }) => {
@@ -23,7 +22,7 @@ class BookDropdown extends React.Component<Props> {
               <div className="BookDropdown__buttons">
                 {book.isOnList ? (
                   <button className="BookDropdown__main-button BookDropdown__main-button--on-list">
-                    Want to Read
+                    {book.hasRead ? 'Have Read' : 'Want to Read'}
                   </button>
                 ) : (
                   <AddBookMutation>
@@ -62,16 +61,25 @@ class BookDropdown extends React.Component<Props> {
                       <button
                         className="BookDropdown__item"
                         onClick={() => {
-                          if (!book.isOnList) {
-                            addBook(book.id);
-                          }
+                          addBook(book.id);
                         }}
                       >
                         Want to Read
                       </button>
                     )}
                   </AddBookMutation>
-                  <button className="BookDropdown__item">Have Read</button>
+                  <AddBookMutation>
+                    {addBook => (
+                      <button
+                        className="BookDropdown__item"
+                        onClick={() => {
+                          addBook(book.id, true);
+                        }}
+                      >
+                        Have Read
+                      </button>
+                    )}
+                  </AddBookMutation>
                   {book.isOnList && (
                     <RemoveBookMutation>
                       {removeBook => (

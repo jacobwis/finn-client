@@ -10,15 +10,15 @@ import {
 
 export const ADD_BOOK_MUTATION = gql`
   #graphql
-  mutation AddBook($bookID: String) {
-    addBookToReadingList(bookID: $bookID)
+  mutation AddBook($bookID: String, $hasRead: Boolean) {
+    addBookToReadingList(bookID: $bookID, hasRead: $hasRead)
   }
 `;
 
 class Mutation extends ApolloMutation {}
 
 interface Props {
-  children: (addBook: (id: string) => void) => React.ReactNode;
+  children: (addBook: (id: string, hasRead?: boolean) => void) => React.ReactNode;
 }
 
 // tslint:disable-next-line:max-classes-per-file
@@ -27,9 +27,9 @@ export class AddBookMutation extends React.Component<Props> {
     return (
       <Mutation mutation={ADD_BOOK_MUTATION}>
         {addBook => {
-          return this.props.children(id => {
+          return this.props.children((id, hasRead = false) => {
             addBook({
-              variables: { bookID: id },
+              variables: { bookID: id, hasRead },
               update: proxy => {
                 const prevData = proxy.readQuery<BookQueryResponse>({
                   query: BOOK_QUERY,
@@ -38,7 +38,8 @@ export class AddBookMutation extends React.Component<Props> {
 
                 const newBook = {
                   ...prevData.getBookByID,
-                  isOnList: true
+                  isOnList: true,
+                  hasRead
                 };
 
                 proxy.writeQuery({
@@ -55,13 +56,15 @@ export class AddBookMutation extends React.Component<Props> {
                     query: READING_LIST_QUERY
                   });
 
-                  proxy.writeQuery({
-                    query: READING_LIST_QUERY,
-                    data: {
-                      ...prevReadingList,
-                      readingList: [...prevReadingList.readingList, newBook]
-                    }
-                  });
+                  if (prevReadingList.readingList.findIndex(b => b.id === id) < 0) {
+                    proxy.writeQuery({
+                      query: READING_LIST_QUERY,
+                      data: {
+                        ...prevReadingList,
+                        readingList: [...prevReadingList.readingList, newBook]
+                      }
+                    });
+                  }
                   // tslint:disable-next-line:no-empty
                 } catch (e) {}
               }

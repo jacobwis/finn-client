@@ -17,6 +17,7 @@ export const BOOK_QUERY = gql`
     getBookByID(id: $id) {
       ...bookInfo
       isOnList
+      hasRead
     }
   }
   ${bookInfo}
