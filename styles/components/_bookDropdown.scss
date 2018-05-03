@@ -1,0 +1,136 @@
+.BookDropdown {
+  position: relative;
+}
+
+.BookDropdown--open {
+  .BookDropdown__main-button {
+    border-bottom-left-radius: 0;
+  }
+
+  .BookDropdown__icon-button {
+    border-bottom-right-radius: 0;
+  }
+}
+
+.BookDropdown__buttons {
+  display: flex;
+}
+
+.BookDropdown__main-button {
+  background-color: #fff;
+  border: 1px solid hsl(0, 0, 80);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: hsl(0, 0, 60);
+  font-size: 15px;
+  flex: 1;
+  margin: 0;
+  padding: 16px 0;
+
+  &:hover {
+    background-color: hsl(0, 0, 95);
+    color: hsl(0, 0, 50);
+  }
+
+  &:active {
+    background-color: #fff;
+    color: hsl(0, 0, 60);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.BookDropdown__main-button--on-list {
+  color: $color-primary;
+  font-weight: 500;
+
+  &:hover {
+    color: $color-primary;
+    background-color: #fff;
+  }
+}
+
+.BookDropdown__icon-button {
+  background-color: #fff;
+  border: 1px solid hsl(0, 0, 80);
+  border-left: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: hsl(0, 0, 60);
+  font-size: 16px;
+  margin: 0;
+  padding: 16px 20px;
+
+  &:hover {
+    background-color: hsl(0, 0, 95);
+    color: hsl(0, 0, 50);
+  }
+
+  &:active {
+    background-color: #fff;
+    color: hsl(0, 0, 60);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.BookDropdown__menu {
+  background-color: white;
+  border: 1px solid hsl(0, 0, 80);
+  border-top: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+  top: 100%;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+}
+
+.BookDropdown__item {
+  background-color: transparent;
+  border: 0;
+  color: hsl(0, 0, 60);
+  display: block;
+  font-size: 15px;
+  text-align: left;
+  margin: 0;
+  padding: 16px;
+  width: 100%;
+
+  &:hover {
+    background-color: hsl(0, 0, 95);
+    color: hsl(0, 0, 50);
+  }
+
+  &:active {
+    background-color: transparent;
+    color: hsl(0, 0, 60);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.BookDropdown__item--remove {
+  color: #ff5654;
+
+  &:hover {
+    background-color: hsl(0, 0, 95);
+    color: shade(#ff5654, 10);
+  }
+
+  &:active {
+    background-color: #fff;
+    color: #ff5654;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}

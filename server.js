@@ -3,7 +3,7 @@ const express = require('express');
 const proxy = require('http-proxy-middleware');
 require('isomorphic-fetch');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const ENV = process.env.NODE_ENV || 'development';
 const IS_PROD = ENV === 'production';
 const API_URL = process.env.API_URL;

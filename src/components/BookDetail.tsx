@@ -1,14 +1,8 @@
 import * as React from 'react';
-import {
-  Book,
-  AddBookMutation,
-  ADD_BOOK_MUTATION,
-  BOOK_QUERY,
-  READING_LIST_QUERY,
-  ReadingListQueryResponse
-} from '../api';
+import { Book } from '../api';
+import * as AppContext from '../contexts/AppContext';
+import BookDropdown from './BookDropdown';
 import Button from './Button';
-import BookModal from './BookModal';
 import LoadingView from './LoadingView';
 
 interface Props {
@@ -62,82 +56,34 @@ class BookDetail extends React.Component<Props, State> {
     }
 
     return (
-      <>
-        <div className="BookDetail">
-          <div className="BookDetail__title-area">
-            <h1 className="BookDetail__title">{book.title}</h1>
-            <p className="BookDetail__authors">{book.authors.join(', ')}</p>
-          </div>
-          <div className="BookDetail__cover-area ">
-            <div className="BookDetail__cover">
-              <img src={cover} />
-            </div>
-            {book.isOnList ? (
-              <Button onClick={this.showRemoveBookModal} fullWidth type="text" theme="secondary">
-                Remove from List
-              </Button>
-            ) : (
-              <AddBookMutation mutation={ADD_BOOK_MUTATION}>
-                {addBook => (
-                  <Button
-                    className="BookDetail__button"
-                    onClick={() => {
-                      addBook({
-                        variables: { bookID: book.id },
-                        update: proxy => {
-                          const prevData = proxy.readQuery<any>({
-                            query: BOOK_QUERY,
-                            variables: { id: book.id }
-                          });
-
-                          const newBook = {
-                            ...prevData.getBookByID,
-                            isOnList: true
-                          };
-
-                          proxy.writeQuery({
-                            query: BOOK_QUERY,
-                            variables: { id: book.id },
-                            data: {
-                              ...prevData,
-                              getBookByID: newBook
-                            }
-                          });
-
-                          try {
-                            const prevReadingList = proxy.readQuery<ReadingListQueryResponse>({
-                              query: READING_LIST_QUERY
-                            });
-
-                            proxy.writeQuery({
-                              query: READING_LIST_QUERY,
-                              data: {
-                                ...prevReadingList,
-                                readingList: [...prevReadingList.readingList, newBook]
-                              }
-                            });
-                            // tslint:disable-next-line:no-empty
-                          } catch (e) {}
-                        }
-                      });
-                    }}
-                    fullWidth
-                  >
-                    Add to List
-                  </Button>
-                )}
-              </AddBookMutation>
-            )}
-          </div>
-          <p
-            className="BookDetail__description  BookDetail__description-area"
-            dangerouslySetInnerHTML={{ __html: book.description }}
-          />
+      <div className="BookDetail">
+        <div className="BookDetail__title-area">
+          <h1 className="BookDetail__title">{book.title}</h1>
+          <p className="BookDetail__authors">{book.authors.join(', ')}</p>
         </div>
-        {this.state.removeBookModalVisible && (
-          <BookModal book={book} onClose={this.hideRemoveBookModal} />
-        )}
-      </>
+        <div className="BookDetail__cover-area ">
+          <div className="BookDetail__cover">
+            <img src={cover} />
+          </div>
+          <AppContext.Consumer>
+            {({ currentUser, showAuthModal }) => {
+              if (currentUser) {
+                return <BookDropdown book={book} />;
+              }
+
+              return (
+                <Button type="outline" onClick={showAuthModal} fullWidth>
+                  Sign In
+                </Button>
+              );
+            }}
+          </AppContext.Consumer>
+        </div>
+        <p
+          className="BookDetail__description  BookDetail__description-area"
+          dangerouslySetInnerHTML={{ __html: book.description }}
+        />
+      </div>
     );
   }
 }
