@@ -1,0 +1,10 @@
+.LoadingView {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0;
+}
+
+.LoadingView__spinner {
+  color: hsl(0, 0, 70);
+  font-size: 32px;
+}

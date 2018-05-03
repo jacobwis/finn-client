@@ -9,6 +9,7 @@ import {
 } from '../api';
 import Button from './Button';
 import BookModal from './BookModal';
+import LoadingView from './LoadingView';
 
 interface Props {
   book: Book;
@@ -26,9 +27,6 @@ class BookDetail extends React.Component<Props, State> {
   };
 
   public showRemoveBookModal = () => {
-    // document.body.scrollTo({
-    //   top: 0
-    // });
     window.scrollTo(0, 0);
     document.body.classList.add('modal-open');
     this.setState(prevState => ({
@@ -60,7 +58,7 @@ class BookDetail extends React.Component<Props, State> {
       covers.large || covers.medium || covers.small || covers.thumbnail || covers.smallThumbnail;
 
     if (!this.state.ready) {
-      return <div />;
+      return <LoadingView />;
     }
 
     return (

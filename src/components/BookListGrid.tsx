@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Book } from '../api';
+import LoadingView from './LoadingView';
 
 interface Props {
   books: Book[];
   onHover?: (book: Book) => void;
+  loading?: boolean;
 }
 
 interface State {
@@ -31,31 +33,51 @@ async function preloadCovers(books: Book[]) {
 }
 
 class BookListGrid extends React.Component<Props, State> {
+  public static getDerivedStateFromProps(nextProps: Props, prevState: State): any {
+    if (nextProps.loading && !prevState.loading) {
+      return {
+        loading: true
+      };
+    }
+
+    return null;
+  }
   public state: State = {
     loading: true,
     books: []
   };
 
   public componentDidMount() {
-    preloadCovers(this.props.books).then(() => {
-      this.setState({ books: this.props.books });
-    });
+    if (this.props.books) {
+      preloadCovers(this.props.books).then(() => {
+        this.setState({
+          books: this.props.books,
+          loading: false
+        });
+      });
+    }
   }
 
   public componentDidUpdate(prevProps: Props, prevState: State) {
-    const newBooks = this.props.books.filter(nextBook => {
-      return this.state.books.find(prevBook => prevBook.id === nextBook.id) ? false : true;
+    const newBooks = this.props.books.filter(bookFromProps => {
+      return prevState.books.find(bookFromState => bookFromState.id === bookFromProps.id)
+        ? false
+        : true;
     });
 
     if (newBooks.length > 0) {
       preloadCovers(newBooks).then(() => {
-        this.setState({ books: this.props.books });
+        this.setState({ books: this.props.books, loading: false });
       });
     }
   }
 
   public render() {
     const { books } = this.state;
+
+    if (this.state.loading) {
+      return <LoadingView />;
+    }
 
     return (
       <div className="BookListGrid">

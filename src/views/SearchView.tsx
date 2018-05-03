@@ -53,33 +53,33 @@ class SearchView extends React.Component<Props, State> {
               query={SEARCH_QUERY}
             >
               {({ loading, data, fetchMore, client, ...p }) => {
-                if (loading) {
-                  return <p>Loading...</p>;
-                }
                 const books = data.search;
                 return (
                   <InfiniteScroll
                     onEndReached={() => {
-                      fetchMore({
-                        variables: {
-                          options: {
-                            startIndex: books.length
+                      if (books) {
+                        fetchMore({
+                          variables: {
+                            options: {
+                              startIndex: books.length
+                            }
+                          },
+                          updateQuery: (prev, { fetchMoreResult }) => {
+                            const filtered = fetchMoreResult.search.filter(book => {
+                              return prev.search.find(b => b.id === book.id) ? false : true;
+                            });
+                            return {
+                              ...prev,
+                              search: [...prev.search, ...filtered]
+                            };
                           }
-                        },
-                        updateQuery: (prev, { fetchMoreResult }) => {
-                          const filtered = fetchMoreResult.search.filter(book => {
-                            return prev.search.find(b => b.id === book.id) ? false : true;
-                          });
-                          return {
-                            ...prev,
-                            search: [...prev.search, ...filtered]
-                          };
-                        }
-                      });
+                        });
+                      }
                     }}
                   >
                     <BookListGrid
                       books={books}
+                      loading={loading}
                       onHover={book => {
                         preloadBookData(client, book.id);
                       }}
