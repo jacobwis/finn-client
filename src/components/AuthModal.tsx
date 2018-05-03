@@ -1,19 +1,19 @@
 import * as React from 'react';
-import * as AuthModalContext from '../contexts/AuthModalContext';
+import * as AppContext from '../contexts/AppContext';
 import AuthPrompt from './AuthPrompt';
 import Overlay from './Overlay';
 
 const AuthModal: React.StatelessComponent = () => (
-  <AuthModalContext.Consumer>
-    {authModal => (
+  <AppContext.Consumer>
+    {ctx => (
       <>
-        <Overlay dataTestID="modal-overlay" onClick={authModal.hide} />
+        <Overlay dataTestID="modal-overlay" onClick={ctx.hideAuthModal} />
         <div className="AuthModal">
           <AuthPrompt />
         </div>
       </>
     )}
-  </AuthModalContext.Consumer>
+  </AppContext.Consumer>
 );
 
 export default AuthModal;

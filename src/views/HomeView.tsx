@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CurrentUserQuery, CURRENT_USER_QUERY } from '../api';
+import * as AppContext from '../contexts/AppContext';
 import AuthPrompt from '../components/AuthPrompt';
 import ReadingList from '../components/ReadingList';
 import View from '../components/View';
@@ -9,19 +9,16 @@ class HomeView extends React.Component {
     return (
       <View title="Finn">
         <div className="container">
-          <CurrentUserQuery query={CURRENT_USER_QUERY}>
-            {({ data, loading }) => {
-              if (loading) {
-                return null;
+          <AppContext.Consumer>
+            {ctx => {
+              if (ctx.currentUser) {
+                return <ReadingList />;
+                // return <div />;
               }
 
-              const { currentUser } = data;
-              if (currentUser) {
-                return <ReadingList />;
-              }
               return <AuthPrompt />;
             }}
-          </CurrentUserQuery>
+          </AppContext.Consumer>
         </div>
       </View>
     );

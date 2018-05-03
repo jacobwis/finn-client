@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import * as AuthModalContext from '../../contexts/AuthModalContext';
+import * as AppContext from '../../contexts/AppContext';
 import AuthModal from '../AuthModal';
 
 describe('<AuthModal />', () => {
   it('clicking the overlay should hide the modal', () => {
     const wrap = mount(
-      <AuthModalContext.Provider>
+      <AppContext.Provider>
         <AuthModal />
-      </AuthModalContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.setState({
-      visible: true
+      authModalVisible: true
     });
 
     wrap.find('[data-test-id="modal-overlay"]').simulate('click');
 
-    expect(wrap.state().visible).toEqual(false);
+    expect(wrap.state('authModalVisible')).toEqual(false);
   });
 });

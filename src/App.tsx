@@ -1,8 +1,8 @@
 import { hot } from 'react-hot-loader';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import * as AuthModalContext from './contexts/AuthModalContext';
-import * as MobileMenuContext from './contexts/MobileMenuContext';
+import { CurrentUserQuery, CURRENT_USER_QUERY } from './api';
+import * as AppContext from './contexts/AppContext';
 import MainLayout from './components/MainLayout';
 
 // views
@@ -14,9 +14,9 @@ import SearchView from './views/SearchView';
 class App extends React.Component {
   public render() {
     return (
-      <>
-        <MobileMenuContext.Provider>
-          <AuthModalContext.Provider>
+      <CurrentUserQuery query={CURRENT_USER_QUERY}>
+        {({ data }) => (
+          <AppContext.Provider currentUser={data.currentUser}>
             <Switch>
               <Route path="/playground" component={Playground} />
               <Route
@@ -36,9 +36,9 @@ class App extends React.Component {
                 )}
               />
             </Switch>
-          </AuthModalContext.Provider>
-        </MobileMenuContext.Provider>
-      </>
+          </AppContext.Provider>
+        )}
+      </CurrentUserQuery>
     );
   }
 }

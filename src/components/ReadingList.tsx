@@ -16,6 +16,9 @@ const ReadingListEmpty: React.StatelessComponent = () => (
 const ReadingList: React.StatelessComponent = () => (
   <ReadingListQuery query={READING_LIST_QUERY}>
     {({ data, loading }) => {
+      if (loading) {
+        return <div />;
+      }
       const books = data.readingList;
       if (books.length === 0) {
         return <ReadingListEmpty />;

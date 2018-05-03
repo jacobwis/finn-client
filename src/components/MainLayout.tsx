@@ -1,9 +1,8 @@
 import * as React from 'react';
-import * as MobileMenuContext from '../contexts/MobileMenuContext';
-import * as AuthModalContext from '../contexts/AuthModalContext';
-import AuthModal from './AuthModal';
+import * as AppContext from '../contexts/AppContext';
 import NavBar from './NavBar';
-import MobileMenu from '../components/MobileMenu';
+import AuthModal from './AuthModal';
+import MobileMenu from './MobileMenu';
 
 class MainLayout extends React.Component {
   public render() {
@@ -13,16 +12,14 @@ class MainLayout extends React.Component {
           <NavBar />
           <div className="MainLayout__content">{this.props.children}</div>
         </div>
-        <MobileMenuContext.Consumer>
-          {mobileMenu => {
-            return mobileMenu.visible && <MobileMenu />;
-          }}
-        </MobileMenuContext.Consumer>
-        <AuthModalContext.Consumer>
-          {authModal => {
-            return authModal.visible && <AuthModal />;
-          }}
-        </AuthModalContext.Consumer>
+        <AppContext.Consumer>
+          {ctx => (
+            <>
+              {ctx.authModalVisible && <AuthModal />}
+              {ctx.mobileMenuVisible && <MobileMenu />}
+            </>
+          )}
+        </AppContext.Consumer>
       </>
     );
   }

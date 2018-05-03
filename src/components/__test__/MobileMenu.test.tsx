@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import * as AuthModalContext from '../../contexts/AuthModalContext';
-import * as MobileMenuContext from '../../contexts/MobileMenuContext';
+import * as AppContext from '../../contexts/AppContext';
 import MobileMenu from '../MobileMenu';
 
 describe.skip('<MobileMenu />', () => {
   it('clicking the close menu button should hide the menu', () => {
     const wrap = mount(
-      <MobileMenuContext.Provider>
+      <AppContext.Provider>
         <MobileMenu />
-      </MobileMenuContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.setState({
@@ -25,9 +24,9 @@ describe.skip('<MobileMenu />', () => {
 
   it('clicking the menu overlay should hide the menu', () => {
     const wrap = mount(
-      <MobileMenuContext.Provider>
+      <AppContext.Provider>
         <MobileMenu />
-      </MobileMenuContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.setState({
@@ -41,9 +40,9 @@ describe.skip('<MobileMenu />', () => {
 
   it('clicking the sign in button should hide the menu', () => {
     const wrap = mount(
-      <MobileMenuContext.Provider>
+      <AppContext.Provider>
         <MobileMenu />
-      </MobileMenuContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.setState({
@@ -57,9 +56,9 @@ describe.skip('<MobileMenu />', () => {
 
   it('clicking the sign in button should show the AuthModal', () => {
     const wrap = mount(
-      <AuthModalContext.Provider>
+      <AppContext.Provider>
         <MobileMenu />
-      </AuthModalContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.find('[data-test-id="sign-in-btn"]').simulate('click');
@@ -69,9 +68,9 @@ describe.skip('<MobileMenu />', () => {
 
   it('clicking the sign up button should hide the menu', () => {
     const wrap = mount(
-      <MobileMenuContext.Provider>
+      <AppContext.Provider>
         <MobileMenu />
-      </MobileMenuContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.setState({
@@ -85,9 +84,9 @@ describe.skip('<MobileMenu />', () => {
 
   it('clicking the sign up button should show the AuthModal', () => {
     const wrap = mount(
-      <AuthModalContext.Provider>
+      <AppContext.Provider>
         <MobileMenu />
-      </AuthModalContext.Provider>
+      </AppContext.Provider>
     );
 
     wrap.find('[data-test-id="sign-up-btn"]').simulate('click');
