@@ -30,7 +30,7 @@ class IconButton extends React.Component<Props> {
     if (type === 'text') buttonClass += ' IconButton--text';
 
     return (
-      <button className={buttonClass} onClick={onClick} data-test-id={dataTestID}>
+      <button className={buttonClass} onClick={onClick} data-testid={dataTestID}>
         {children}
       </button>
     );

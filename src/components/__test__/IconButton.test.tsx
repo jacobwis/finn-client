@@ -22,7 +22,7 @@ describe('<IconButton />', () => {
       </IconButton>
     );
 
-    expect(btn.prop('data-test-id')).toEqual('test');
+    expect(btn.prop('data-testid')).toEqual('test');
   });
 
   it('should call "props.onClick" when clicked', () => {

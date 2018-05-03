@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Overlay: React.StatelessComponent<Props> = ({ dataTestID, onClick }) => (
-  <div className="Overlay" data-test-id={dataTestID} onClick={onClick} />
+  <div className="Overlay" data-testid={dataTestID} onClick={onClick} />
 );
 
 export default Overlay;

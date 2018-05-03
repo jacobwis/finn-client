@@ -1,10 +1,10 @@
 export interface CoverLinks {
-  smallThumbnail: string;
-  thumbnail: string;
-  small: string;
-  medium: string;
-  large: string;
-  extraLarge: string;
+  smallThumbnail?: string;
+  thumbnail?: string;
+  small?: string;
+  medium?: string;
+  large?: string;
+  extraLarge?: string;
 }
 
 export interface Book {

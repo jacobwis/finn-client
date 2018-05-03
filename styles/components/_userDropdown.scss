@@ -1,0 +1,74 @@
+.UserDropdown {
+  position: relative;
+}
+
+.UserDropdown__button {
+  align-items: center;
+  border: 0;
+  border-radius: 4px;
+  display: flex;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: hsl(0, 0, 96);
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.UserDropdown__image {
+  border-radius: 50px;
+  height: 42px;
+  width: 42px;
+}
+
+.UserDropdown__details {
+  padding-left: 8px;
+}
+
+.UserDropdown__name {
+  color: hsl(0, 0, 20);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.UserDropdown__username {
+  color: hsl(0, 0, 50);
+  font-size: 13px;
+}
+
+.UserDropdown__menu {
+  background-color: #fff;
+  border: 1px solid hsl(0, 0, 90);
+  border-radius: 3px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0, 0, 0.2);
+  padding: 8px 0;
+  position: absolute;
+  right: 0;
+  z-index: 9;
+}
+
+.UserDropdown__item {
+  color: hsl(0, 0, 50);
+  display: block;
+  font-size: 15px;
+  padding: 8px 16px;
+  text-decoration: none;
+  min-width: 150px;
+
+  &:hover {
+    background-color: hsl(0, 0, 95);
+    color: hsl(0, 0, 30);
+  }
+
+  &:active {
+    background-color: transparent;
+    color: hsl(0, 0, 50);
+  }
+}

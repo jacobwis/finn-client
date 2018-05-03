@@ -1,96 +1,45 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import * as AppContext from '../../contexts/AppContext';
 import MobileMenu from '../MobileMenu';
 
-describe.skip('<MobileMenu />', () => {
-  it('clicking the close menu button should hide the menu', () => {
+const selectTestID = (testID: string) => `[data-testid="${testID}"]`;
+
+describe('<MobileMenu />', () => {
+  it('clicking the menu overlay should set AppContexts "state.mobileMenuVisible" to false', () => {
     const wrap = mount(
       <AppContext.Provider>
-        <MobileMenu />
+        <MemoryRouter>
+          <MobileMenu />
+        </MemoryRouter>
       </AppContext.Provider>
     );
 
     wrap.setState({
-      visible: true
+      mobileMenuVisible: true
     });
 
-    expect(wrap.state().visible).toEqual(true);
+    wrap.find(selectTestID('menu-overlay')).simulate('click');
 
-    wrap.find('[data-test-id="hide-menu"]').simulate('click');
-
-    expect(wrap.state().visible).toEqual(false);
+    expect(wrap.state('mobileMenuVisible')).toEqual(false);
   });
 
-  it('clicking the menu overlay should hide the menu', () => {
+  it('clicking the close button should set AppContexts "state.mobileMenuVisible" to false', () => {
     const wrap = mount(
       <AppContext.Provider>
-        <MobileMenu />
+        <MemoryRouter>
+          <MobileMenu />
+        </MemoryRouter>
       </AppContext.Provider>
     );
 
     wrap.setState({
-      visible: true
+      mobileMenuVisible: true
     });
 
-    wrap.find('[data-test-id="menu-overlay"]').simulate('click');
+    wrap.find(selectTestID('hide-menu')).simulate('click');
 
-    expect(wrap.state().visible).toEqual(false);
-  });
-
-  it('clicking the sign in button should hide the menu', () => {
-    const wrap = mount(
-      <AppContext.Provider>
-        <MobileMenu />
-      </AppContext.Provider>
-    );
-
-    wrap.setState({
-      visible: true
-    });
-
-    wrap.find('[data-test-id="sign-in-btn"]').simulate('click');
-
-    expect(wrap.state().visible).toEqual(false);
-  });
-
-  it('clicking the sign in button should show the AuthModal', () => {
-    const wrap = mount(
-      <AppContext.Provider>
-        <MobileMenu />
-      </AppContext.Provider>
-    );
-
-    wrap.find('[data-test-id="sign-in-btn"]').simulate('click');
-
-    expect(wrap.state().visible).toEqual(true);
-  });
-
-  it('clicking the sign up button should hide the menu', () => {
-    const wrap = mount(
-      <AppContext.Provider>
-        <MobileMenu />
-      </AppContext.Provider>
-    );
-
-    wrap.setState({
-      visible: true
-    });
-
-    wrap.find('[data-test-id="sign-up-btn"]').simulate('click');
-
-    expect(wrap.state().visible).toEqual(false);
-  });
-
-  it('clicking the sign up button should show the AuthModal', () => {
-    const wrap = mount(
-      <AppContext.Provider>
-        <MobileMenu />
-      </AppContext.Provider>
-    );
-
-    wrap.find('[data-test-id="sign-up-btn"]').simulate('click');
-
-    expect(wrap.state().visible).toEqual(true);
+    expect(wrap.state('mobileMenuVisible')).toEqual(false);
   });
 });

@@ -4,6 +4,7 @@ import * as AppContext from '../contexts/AppContext';
 import Button from './Button';
 import IconButton from './IconButton';
 import SearchInput from './SearchInput';
+import UserDropdown from './UserDropdown';
 
 const NavBar: React.StatelessComponent = () => (
   <AppContext.Consumer>
@@ -44,10 +45,7 @@ const NavBar: React.StatelessComponent = () => (
                   </Button>
                 </div>
               ) : (
-                <div className="NavBar__user">
-                  <p>{currentUser.name}</p>
-                  <a href="/auth/logout">Sign Out</a>
-                </div>
+                <UserDropdown user={currentUser} />
               )}
             </div>
           </div>

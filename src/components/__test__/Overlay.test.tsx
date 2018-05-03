@@ -6,7 +6,7 @@ describe('<Overlay />', () => {
   it('should pass "props.dataTestID" to the element', () => {
     const overlay = shallow(<Overlay dataTestID="test-id" />);
 
-    expect(overlay.prop('data-test-id')).toEqual('test-id');
+    expect(overlay.prop('data-testid')).toEqual('test-id');
   });
 
   it('should call "props.onClick" when clicked', () => {

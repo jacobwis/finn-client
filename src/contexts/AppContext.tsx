@@ -18,7 +18,19 @@ interface State {
   hideAuthModal: () => void;
 }
 
-const Context = React.createContext<State>();
+const Context = React.createContext<State>({
+  currentUser: null,
+  mobileMenuVisible: false,
+  // tslint:disable-next-line:no-empty
+  showMobileMenu: () => {},
+  // tslint:disable-next-line:no-empty
+  hideMobileMenu: () => {},
+  authModalVisible: false,
+  // tslint:disable-next-line:no-empty
+  showAuthModal: () => {},
+  // tslint:disable-next-line:no-empty
+  hideAuthModal: () => {}
+});
 
 export const Consumer = Context.Consumer;
 

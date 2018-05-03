@@ -15,7 +15,7 @@ describe('<AuthModal />', () => {
       authModalVisible: true
     });
 
-    wrap.find('[data-test-id="modal-overlay"]').simulate('click');
+    wrap.find('[data-testid="modal-overlay"]').simulate('click');
 
     expect(wrap.state('authModalVisible')).toEqual(false);
   });
