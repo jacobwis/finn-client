@@ -1,7 +1,7 @@
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Book } from '../types';
+import { Query } from 'react-apollo';
 import bookInfo from '../fragments/bookInfo';
+import { Book } from '../types';
 
 export interface BookQueryResponse {
   getBookByID: Book;

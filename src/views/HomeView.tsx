@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as AppContext from '../contexts/AppContext';
 import AuthPrompt from '../components/AuthPrompt';
 import ReadingList from '../components/ReadingList';
 import View from '../components/View';
+import * as AppContext from '../contexts/AppContext';
 
 class HomeView extends React.Component {
   public render() {
@@ -13,7 +13,6 @@ class HomeView extends React.Component {
             {ctx => {
               if (ctx.currentUser) {
                 return <ReadingList />;
-                // return <div />;
               }
 
               return <AuthPrompt />;

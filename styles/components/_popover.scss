@@ -1,0 +1,21 @@
+.Popover {
+  position: absolute;
+  z-index: 10;
+}
+
+.Popover--align-right {
+  right: 0;
+}
+
+.Popover--align-left {
+  left: 0;
+}
+
+.Popover__click-listener {
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+}

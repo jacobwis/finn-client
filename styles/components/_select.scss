@@ -1,0 +1,30 @@
+.Select {
+  display: inline-block;
+  position: relative;
+}
+
+.Select__button {
+  background-color: #fff;
+  border: 1px solid hsl(0, 0, 80);
+  border-radius: 4px;
+  color: hsl(0, 0, 50);
+  font-size: 13px;
+  padding: 8px 8px;
+
+  &:hover {
+    background-color: hsl(0, 0, 98);
+    color: hsl(0, 0, 30);
+  }
+
+  &:active {
+    color: hsl(0, 0, 50);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.Select__button-icon {
+  padding-left: 12px;
+}

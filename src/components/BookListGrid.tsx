@@ -59,16 +59,20 @@ class BookListGrid extends React.Component<Props, State> {
   }
 
   public componentDidUpdate(prevProps: Props, prevState: State) {
-    const newBooks = this.props.books.filter(bookFromProps => {
-      return prevState.books.find(bookFromState => bookFromState.id === bookFromProps.id)
-        ? false
-        : true;
-    });
-
-    if (newBooks.length > 0) {
-      preloadCovers(newBooks).then(() => {
-        this.setState({ books: this.props.books, loading: false });
+    if (this.props.books !== prevState.books) {
+      const newBooks = this.props.books.filter(bookFromProps => {
+        return prevState.books.find(bookFromState => bookFromState.id === bookFromProps.id)
+          ? false
+          : true;
       });
+
+      if (newBooks.length > 0) {
+        preloadCovers(newBooks).then(() => {
+          this.setState({ books: this.props.books, loading: false });
+        });
+      } else {
+        this.setState({ books: this.props.books, loading: false });
+      }
     }
   }
 
