@@ -41,7 +41,7 @@ class UserDropdown extends React.Component<Props, State> {
           <img className="UserDropdown__image" src={user.photoURL} />
           <div className="UserDropdown__details">
             <p className="UserDropdown__name">{user.name}</p>
-            <p className="UserDropdown__username">@{user.username}</p>
+            {user.username && <p className="UserDropdown__username">@{user.username}</p>}
           </div>
         </button>
         {isOpen && (

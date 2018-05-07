@@ -19,7 +19,7 @@ const AuthPrompt: React.StatelessComponent = () => (
         </span>
         <span className="AuthPrompt__button-text">Sign In with Facebook</span>
       </a>
-      <a className="AuthPrompt__button AuthPrompt__button--google" href="#">
+      <a className="AuthPrompt__button AuthPrompt__button--google" href="/auth/google">
         <span className="AuthPrompt__button-icon">
           <i className="fab fa-google" />
         </span>

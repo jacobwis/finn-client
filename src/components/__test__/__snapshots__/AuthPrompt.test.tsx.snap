@@ -53,7 +53,7 @@ exports[`<AuthPrompt /> should render correctly 1`] = `
     </a>
     <a
       className="AuthPrompt__button AuthPrompt__button--google"
-      href="#"
+      href="/auth/google"
     >
       <span
         className="AuthPrompt__button-icon"
