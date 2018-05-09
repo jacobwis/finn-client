@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
-import * as React from 'react';
-import { StaticRouter } from 'react-router-dom';
-import { createHttpLink } from 'apollo-link-http';
-import { ApolloProvider, renderToStringWithData } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { Request, Response } from 'express';
+import * as React from 'react';
+import { ApolloProvider, renderToStringWithData } from 'react-apollo';
+import { StaticRouter } from 'react-router-dom';
 import App from './App';
 import View from './components/View';
 
@@ -36,11 +36,11 @@ export default function serverRenderer() {
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>${View.getTitle()}</title>
       ${IS_PROD ? `<link rel="stylesheet" href="/styles.css">` : ''}
-      <script defer src="/fontawesome-all.min.js"></script>
-    </head>
-    <body>
+      </head>
+      <body>
       <div id="root">${html}</div>
       <div id="modal-root"></div>
+      <script src="/fontawesome-all.min.js"></script>
       <script>
         window.__APOLLO_STATE__=${JSON.stringify(client.extract())}
       </script>      

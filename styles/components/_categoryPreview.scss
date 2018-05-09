@@ -1,0 +1,23 @@
+.CategoryPreview {
+  margin-bottom: 32px;
+}
+
+.CategoryPreview__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.CategoryPreview__name {
+  color: hsl(0, 0, 20);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.CategoryPreview__link {
+  color: $color-primary;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}

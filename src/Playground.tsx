@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-class Playground extends React.Component {
+class Playground extends React.Component<{}, any> {
   public render() {
-    return <h1>Hey</h1>;
+    return <div>Hey</div>;
   }
 }
 

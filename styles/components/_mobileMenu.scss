@@ -13,9 +13,39 @@
   padding: 8px 16px;
 }
 
+.MobileMenu__bottom {
+  padding-bottom: 32px;
+}
+
+.MobileMenu__search {
+  margin-bottom: 16px;
+}
+
 .MobileMenu__links {
   flex: 1;
   padding: 8px 16px;
+}
+
+.MobileMenu__link {
+  color: hsl(0, 0, 60);
+  display: block;
+  font-size: 16px;
+  margin: 8px 0;
+  padding: 8px 0;
+  text-decoration: none;
+
+  &:hover {
+    background-color: hsl(0, 0, 95);
+    color: hsl(0, 0, 30);
+  }
+
+  &:active {
+    color: hsl(0, 0, 60);
+  }
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .MobileMenu__auth-buttons {
@@ -24,4 +54,45 @@
   button {
     margin-top: 10px;
   }
+}
+
+.MobileMenu__user {
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: hsl(0, 0, 96);
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.MobileMenu__user-image {
+  border-radius: 50px;
+  height: 42px;
+  width: 42px;
+}
+
+.MobileMenu__user-details {
+  padding-left: 8px;
+  flex: 1;
+}
+
+.MobileMenu__user-name {
+  color: hsl(0, 0, 20);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.MobileMenu__user-username {
+  color: hsl(0, 0, 50);
+  font-size: 13px;
 }

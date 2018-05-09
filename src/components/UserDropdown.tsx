@@ -49,9 +49,9 @@ class UserDropdown extends React.Component<Props, State> {
             <Link className="UserDropdown__item" to="/">
               Reading List
             </Link>
-            <a className="UserDropdown__item" href="#">
+            <Link className="UserDropdown__item" to="/categories">
               Browse
-            </a>
+            </Link>
             <a className="UserDropdown__item" href="#">
               About
             </a>

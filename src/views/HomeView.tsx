@@ -3,6 +3,7 @@ import AuthPrompt from '../components/AuthPrompt';
 import ReadingList from '../components/ReadingList';
 import View from '../components/View';
 import * as AppContext from '../contexts/AppContext';
+import CategoriesView from './CategoriesView';
 
 class HomeView extends React.Component {
   public render() {
@@ -15,7 +16,12 @@ class HomeView extends React.Component {
                 return <ReadingList />;
               }
 
-              return <AuthPrompt />;
+              return (
+                <>
+                  <AuthPrompt />
+                  <CategoriesView />
+                </>
+              );
             }}
           </AppContext.Consumer>
         </div>

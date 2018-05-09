@@ -8,6 +8,8 @@ import * as AppContext from './contexts/AppContext';
 import canUseDOM from './utils/canUseDOM';
 // views
 import BookView from './views/BookView';
+import CategoriesView from './views/CategoriesView';
+import CategoryView from './views/CategoryView';
 import HomeView from './views/HomeView';
 import SearchView from './views/SearchView';
 
@@ -38,6 +40,15 @@ class App extends React.Component {
                       render={({ match }) => (
                         <>
                           <Route path={`${match.url}/:id`} component={BookView} />
+                        </>
+                      )}
+                    />
+                    <Route
+                      path="/categories"
+                      render={({ match }) => (
+                        <>
+                          <Route path={`${match.url}`} exact component={CategoriesView} />
+                          <Route path={`${match.url}/:id`} component={CategoryView} />
                         </>
                       )}
                     />
