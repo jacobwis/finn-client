@@ -9,22 +9,26 @@ class HomeView extends React.Component {
   public render() {
     return (
       <View title="Finn">
-        <div className="container">
-          <AppContext.Consumer>
-            {ctx => {
-              if (ctx.currentUser) {
-                return <ReadingList />;
-              }
-
+        <AppContext.Consumer>
+          {ctx => {
+            if (ctx.currentUser) {
               return (
-                <>
-                  <AuthPrompt />
-                  <CategoriesView />
-                </>
+                <div className="container">
+                  <ReadingList />
+                </div>
               );
-            }}
-          </AppContext.Consumer>
-        </div>
+            }
+
+            return (
+              <>
+                <div className="container">
+                  <AuthPrompt />
+                </div>
+                <CategoriesView />
+              </>
+            );
+          }}
+        </AppContext.Consumer>
       </View>
     );
   }

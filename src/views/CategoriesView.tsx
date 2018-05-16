@@ -14,7 +14,7 @@ class CategoriesView extends React.Component {
           const categories = data.categories;
           if (categories) {
             return (
-              <div>
+              <div className="container">
                 {categories.map(category => {
                   return <CategoryPreview key={category.id} category={category} />;
                 })}
